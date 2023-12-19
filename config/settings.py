@@ -41,7 +41,10 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'drf_yasg',
+    'djoser',
 
+    'electronics_network',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -125,3 +128,16 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'users.user'
+
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
+    'SERIALIZERS': {
+        'user_create': 'users.serializers.UserSerializers'
+    },
+    'LOGIN_FIELD': 'email',
+}

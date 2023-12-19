@@ -39,7 +39,7 @@ class Product(models.Model):
     name = models.CharField(max_length=100, verbose_name='название')
     model = models.CharField(max_length=100, verbose_name='модель')
     release_date = models.DateField(verbose_name='дата релиза')
-    owner = models.ForeignKey(Node, on_delete=models.CASCADE, related_name='owners', verbose_name="владелец")
+    owner = models.ForeignKey(Node, on_delete=models.CASCADE, related_name='owners', verbose_name="поставщик")
     selling_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена продажи')
 
     def __str__(self):

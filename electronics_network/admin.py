@@ -31,6 +31,8 @@ class NodeAdmin(admin.ModelAdmin):
                                name=obj.supplier.name
                                )
 
+    supplier_link.short_description = 'Поставщик'
+
     @admin.action(description='Очистить долг поставщику')
     def clear_debt(self, request, queryset):
         queryset.update(debt_to_the_supplier=0)

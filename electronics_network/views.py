@@ -11,8 +11,8 @@ class NodeListApiView(generics.ListAPIView):
     serializer_class = NodeSerializer
     pagination_class = NodePaginator
 
-    filter_backends = [DjangoFilterBackend, ]
-    filterset_fields = ["contact__country", ]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["contact__city"]
 
 
 class NodeCreateApiView(generics.CreateAPIView):

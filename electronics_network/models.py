@@ -4,6 +4,7 @@ NULLABLE = {"null": True, "blank": True}
 
 
 class Levels(models.IntegerChoices):
+    """ Уровень структуры """
 
     FACTORY = 0, 'Завод'
     RETAIL_NETWORK = 1, 'Розничная сеть'
@@ -11,6 +12,8 @@ class Levels(models.IntegerChoices):
 
 
 class Node(models.Model):
+    """ Узел связи поставщика """
+
     name = models.CharField(max_length=100, unique=True, verbose_name='название')
     supplier = models.ForeignKey('self', **NULLABLE, default=None, on_delete=models.SET_NULL, verbose_name='поставщик')
     level = models.IntegerField(choices=Levels.choices, default=Levels.FACTORY, verbose_name='Уровень структуры')
@@ -27,6 +30,8 @@ class Node(models.Model):
 
 
 class Contact(models.Model):
+    """Контакты поставщика"""
+
     member = models.OneToOneField(Node, on_delete=models.CASCADE, verbose_name='поставщик')
     email = models.EmailField(verbose_name='email')
     country = models.CharField(max_length=50, **NULLABLE, verbose_name='страна')
@@ -43,6 +48,8 @@ class Contact(models.Model):
 
 
 class Product(models.Model):
+    """ Продукт """
+
     name = models.CharField(max_length=100, verbose_name='название')
     model = models.CharField(max_length=100, verbose_name='модель')
     release_date = models.DateField(verbose_name='дата релиза')
